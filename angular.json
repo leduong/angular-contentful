@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-test": {
+    "angular-contentful": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,14 +13,23 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-test",
+            "outputPath": "dist/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.css"],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "qs",
+              "lodash/isPlainObject",
+              "lodash/isString",
+              "process",
+              "json-stringify-safe",
+              "contentful-sdk-core",
+              "contentful"
+            ]
           },
           "configurations": {
             "production": {
@@ -53,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-test:build:production"
+              "buildTarget": "angular-contentful:build:production"
             },
             "development": {
-              "browserTarget": "angular-test:build:development"
+              "buildTarget": "angular-contentful:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -64,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-test:build"
+            "buildTarget": "angular-contentful:build"
           }
         },
         "test": {
@@ -79,5 +88,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "c90453d8-cd51-48d0-ad83-af1b0d327612"
   }
 }
