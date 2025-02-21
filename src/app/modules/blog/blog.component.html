@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <h1>Danh sách bài viết</h1>
+
+  <alert *ngIf="error$ | async" type="danger"> Error loading content! </alert>
+
+  <div *ngFor="let item of pagedItems">
+    <h2>{{ item.title }}</h2>
+    <div *ngIf="item.imageUrl">
+      <img
+        [src]="item.imageUrl"
+        alt="Project Image"
+        class="img-fluid rounded"
+      />
+    </div>
+    <p class="mt-3">{{ item.body }}</p>
+    <hr />
+  </div>
+
+  <!-- Pagination -->
+  <pagination
+    [totalItems]="contentData.length"
+    [(ngModel)]="currentPage"
+    [itemsPerPage]="itemsPerPage"
+    (pageChanged)="onPageChange($event.page)"
+  >
+  </pagination>
+</div>
